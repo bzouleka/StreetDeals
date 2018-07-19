@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <article >
+        <h2>Annonce</h2>
+        <div class="metadata">Posté le 19/07/2018</div>
+        <div class="content">
+            <img src="http://placehold.it/350x150" alt="">
+            <P>Description</P>
+            <a href="{{ path('annonce_show') }}" class="btn btn-primary">Voir l'annonce</a>
+        </div>
+    </article>
+    <hr>
+    <p>Description en détail</p>
+
+{% endblock %}

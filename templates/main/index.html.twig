@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ controller_name }}!{% endblock %}
+
+{% block body %}
+    <section class="Annonces">
+        <article >
+            <h2>Annonce</h2>
+            <div class="metadata">Posté le 19/07/2018</div>
+            <div class="content">
+                <img src="http://placehold.it/350x150" alt="">
+                <P>Description</P>
+                <a href="{{ path('annonce_show') }}" class="btn btn-primary">Voir l'annonce</a>
+            </div>
+        </article>
+        <article >
+            <h2>Annonce</h2>
+            <div class="metadata">Posté le 19/07/2018</div>
+            <div class="content">
+                <img src="http://placehold.it/350x150" alt="">
+                <P>Description</P>
+                <a href="{{ path('annonce_show') }}" class="btn btn-primary">Voir l'annonce</a>
+            </div>
+        </article>
+        <article >
+            <h2>Annonce</h2>
+            <div class="metadata">Posté le 19/07/2018</div>
+            <div class="content">
+                <img src="http://placehold.it/350x150" alt="">
+                <P>Description</P>
+                <a href="{{ path('annonce_show') }}" class="btn btn-primary">Voir l'annonce</a>
+            </div>
+        </article>
+    </section>
+{% endblock %}
