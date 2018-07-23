@@ -6,6 +6,7 @@ security:
             ROLE_ADMIN:       ROLE_USER
             ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
+    # encryptage du mot de passe avec l'algorithm bcrypt
     encoders:
             App\Entity\User: bcrypt
 
