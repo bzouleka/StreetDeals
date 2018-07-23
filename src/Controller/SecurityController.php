@@ -86,4 +86,14 @@
                 'error' => $error,
             ));
         }
+
+        /**
+         * @Route("/logout", name="security_logout")
+         */
+
+        public function logout(){
+
+
+        }
+
     }
