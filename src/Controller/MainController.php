@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
+use App\Form\AnnonceType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -32,9 +34,19 @@ class MainController extends Controller
 //    }
 
     /**
-     * @Route("/main/2", name="annonce_show")
+     * @Route("/main", name="annonce_show")
      */
     public function show(){
-        return $this->render('main/show.html.twig');
+
+        $annonce = new Product();
+
+        $form = $this->createForm(AnnonceType::class, $annonce);
+
+
+        return $this->render('main/show.html.twig', [
+            'annonce' => $annonce,
+            'article' => $form->createView()
+        ]);
+
     }
 }

@@ -4,6 +4,7 @@
 
     use App\Entity\User;
     use App\Form\RegisterFormType;
+    use App\Service\Email;
     use Doctrine\Common\Persistence\ObjectManager;
     use Symfony\Component\DependencyInjection\ContainerInterface;
     use Symfony\Component\HttpFoundation\Request;
@@ -39,7 +40,7 @@
          * @return \Symfony\Component\HttpFoundation\Response
          * @Route("/inscription", name="security_registration")
          */
-        public function registration(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
+        public function registration(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder, Email $email)
         {
 
             $user = new User();
@@ -56,6 +57,7 @@
                 $manager->persist($user);
                 $manager->flush();
 
+                $email->sendEmail("inscription", "saien.formation@gmail.com", "bzouleka@gmail.com","bienvenue");
 
             }
 
@@ -91,7 +93,8 @@
          * @Route("/logout", name="security_logout")
          */
 
-        public function logout(){
+        public function logout()
+        {
 
 
         }
