@@ -46,12 +46,12 @@
                 return;
             }
 
-            $file = $entity->getBrochure();
+            $file = $entity->getPhoto();
 
             // only upload new files
             if ($file instanceof UploadedFile) {
                 $fileName = $this->uploader->upload($file);
-                $entity->setBrochure($fileName);
+                $entity->setPhoto($fileName);
             }
         }
 
@@ -64,8 +64,8 @@
                 return;
             }
 
-            if ($fileName = $entity->getBrochure()) {
-                $entity->setBrochure(new File($this->uploader->getTargetDirectory().'/'.$fileName));
+            if ($fileName = $entity->getPhoto()) {
+                $entity->setPhoto(new File($this->uploader->getTargetDirectory().'/'.$fileName));
             }
         }
 

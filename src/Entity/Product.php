@@ -37,8 +37,8 @@ class Product
     private $Photo;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     */
+ * @ORM\Column(type="string", length=255)
+ */
     private $Region;
 
     /**
@@ -49,6 +49,9 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $product;
+
+
     private $Other;
 
     /**
@@ -155,6 +158,20 @@ class Product
     {
         $this->user = $user;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+
+    public function setProduct($product): self
+    {
+        $this->product = $product;
         return $this;
     }
 }

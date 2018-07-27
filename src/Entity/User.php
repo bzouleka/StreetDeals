@@ -10,8 +10,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 
-
 /**
+ * @property  roles
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity(
  *     fields={"Email"},
@@ -63,6 +63,11 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="user")
      */
     private $Annonce;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $Role;
 
     public function __construct()
     {
@@ -180,10 +185,20 @@ class User implements UserInterface
      * is created.
      *
      * @return (Role|string)[] The user roles
+     * @return mixed
      */
     public function getRoles()
     {
         return array('ROLE_USER');
+    }
+
+    /**
+     * @param mixed $roles
+     */
+    public function setRoles($roles): self
+    {
+        $this->roles = $roles;
+        return $this;
     }
 
     /**
@@ -217,5 +232,25 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    public function removeRole($role)
+    {
+        $index = array_search ($role, $this->roles, true);
+        if ($index !== false) {
+            array_splice ($this->roles, $index, 1);
+        }
+    }
+
+    public function getRole(): ?string
+    {
+        return $this->Role;
+    }
+
+    public function setRole(string $Role): self
+    {
+        $this->Role = $Role;
+
+        return $this;
     }
 }

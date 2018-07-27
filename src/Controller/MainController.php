@@ -4,18 +4,28 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Form\AnnonceType;
+use App\Repository\ProductRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class MainController extends Controller
 {
+    private $annonceAll;
+
     /**
      * @Route("/main", name="main")
      */
-    public function index()
+
+    public function index(EntityManagerInterface $em)
     {
+        $annonceAll = $em->getRepository(Product::class)->findAll();
+
+
+
         return $this->render('main/index.html.twig', [
-            'controller_name' => 'MainController',
+//            'controller_name' => 'MainController',
+        'annonceAll' => $annonceAll
         ]);
     }
 
@@ -38,13 +48,13 @@ class MainController extends Controller
      */
     public function show(){
 
-        $annonce = new Product();
+        $annonces = new Product();
 
-        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form = $this->createForm(AnnonceType::class, $annonces);
 
 
         return $this->render('main/show.html.twig', [
-            'annonce' => $annonce,
+            'annonce' => $annonces,
             'article' => $form->createView()
         ]);
 

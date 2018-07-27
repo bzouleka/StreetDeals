@@ -1,36 +1,29 @@
 {% extends 'base.html.twig' %}
 
 
-{% block title %}Hello {{ controller_name }}!{% endblock %}
+{% block title %}Hello{% endblock %}
 
 {% block body %}
     <section class="Annonces">
+        {% for annonce in annonceAll  %}
         <article >
-            <h2>Annonce</h2>
-            <div class="metadata">Posté le 19/07/2018</div>
+            <br>
+            <h1 style="text-align: center">Annonces</h1>
+            <br><hr><br>
             <div class="content">
-                <img src="http://placehold.it/350x150" alt="">
-                <P>Description</P>
+                <P><h2>{{ annonce.title }}</h2></P>
+
+                <h4>Categorie</h4>
+                <P>{{ annonce.category }}</P>
+                <img src="{{asset('uploads/brochures/' ~ annonce.photo)}}" alt="">
+                <br>
+                <div class="metadata">Posté le {{ annonce.createAt|date }}</div>
+                <br>
+                <p>{{ annonce.description }}</p>
+
                 <a href="{{ path('annonce_show') }}" class="btn btn-primary">Voir l'annonce</a>
             </div>
         </article>
-        <article >
-            <h2>Annonce</h2>
-            <div class="metadata">Posté le 19/07/2018</div>
-            <div class="content">
-                <img src="http://placehold.it/350x150" alt="">
-                <P>Description</P>
-                <a href="{{ path('annonce_show') }}" class="btn btn-primary">Voir l'annonce</a>
-            </div>
-        </article>
-        <article >
-            <h2>Annonce</h2>
-            <div class="metadata">Posté le 19/07/2018</div>
-            <div class="content">
-                <img src="http://placehold.it/350x150" alt="">
-                <P>Description</P>
-                <a href="{{ path('annonce_show') }}" class="btn btn-primary">Voir l'annonce</a>
-            </div>
-        </article>
+        {% endfor %}
     </section>
 {% endblock %}

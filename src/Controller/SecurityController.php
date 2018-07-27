@@ -8,9 +8,11 @@
     use Doctrine\Common\Persistence\ObjectManager;
     use Symfony\Component\DependencyInjection\ContainerInterface;
     use Symfony\Component\HttpFoundation\Request;
+    use Symfony\Component\HttpFoundation\Response;
     use Symfony\Component\Routing\Annotation\Route;
     use Symfony\Bundle\FrameworkBundle\Controller\Controller;
     use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+    use Symfony\Component\Security\Core\Security;
     use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
@@ -89,6 +91,22 @@
         {
 
 
+        }
+        public function hello($name)
+        {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        }
+        public function index()
+        {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+            $user = $this->getUser();
+            return new Response('bonjour '.$user->getFirstName());
+        }
+
+        public function indexAction(Security $security)
+        {
+            $user = $security->getUser();
         }
 
     }
